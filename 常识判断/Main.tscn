@@ -1,0 +1,97 @@
+[gd_scene format=3 uid="uid://d2ue3cq7c63hg"]
+
+[ext_resource type="Script" uid="uid://es0xassp56sg" path="res://Main.gd" id="1_glv2v"]
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_glv2v"]
+
+[node name="Main" type="Control" unique_id=489763972]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_glv2v")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1618626149]
+layout_mode = 0
+offset_right = 665.0
+offset_bottom = 650.0
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="HBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=1909010016]
+layout_mode = 2
+
+[node name="RemainTextLabel" type="RichTextLabel" parent="MarginContainer/HBoxContainer" unique_id=2144093204]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+
+[node name="QuestionLabel" type="RichTextLabel" parent="MarginContainer/HBoxContainer" unique_id=212876396]
+custom_minimum_size = Vector2(550, 80)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+text = "问题"
+
+[node name="Node2D" type="VBoxContainer" parent="MarginContainer/HBoxContainer" unique_id=946436406]
+layout_mode = 2
+
+[node name="Options1" type="CheckBox" parent="MarginContainer/HBoxContainer/Node2D" unique_id=1799572228]
+layout_mode = 2
+button_group = SubResource("ButtonGroup_glv2v")
+text = "1"
+
+[node name="Options2" type="CheckBox" parent="MarginContainer/HBoxContainer/Node2D" unique_id=1386292998]
+layout_mode = 2
+text = "2"
+
+[node name="Options3" type="CheckBox" parent="MarginContainer/HBoxContainer/Node2D" unique_id=1095992153]
+layout_mode = 2
+text = "3"
+
+[node name="Options4" type="CheckBox" parent="MarginContainer/HBoxContainer/Node2D" unique_id=1802186117]
+layout_mode = 2
+text = "4"
+
+[node name="ExplanationLabel" type="RichTextLabel" parent="MarginContainer/HBoxContainer" unique_id=416087165]
+visible = false
+custom_minimum_size = Vector2(600, 300)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+text = "答案+详情"
+
+[node name="DebugLabel" type="Label" parent="MarginContainer/HBoxContainer" unique_id=701187027]
+visible = false
+layout_mode = 2
+
+[node name="NextButton" type="Button" parent="." unique_id=1048999315]
+layout_mode = 0
+offset_left = 920.0
+offset_top = 46.0
+offset_right = 1020.0
+offset_bottom = 96.0
+text = "下一个"
+
+[node name="ExplanationButton" type="Button" parent="." unique_id=1361609306]
+layout_mode = 0
+offset_left = 920.0
+offset_top = 168.0
+offset_right = 1031.0
+offset_bottom = 218.0
+text = "显示答案"
+
+[node name="ReselectButton" type="Button" parent="." unique_id=233609361]
+layout_mode = 0
+offset_left = 1056.0
+offset_top = 5.0
+offset_right = 1144.0
+offset_bottom = 36.0
+text = "返回首页面"
+
+[node name="ComfirmButton" type="Button" parent="." unique_id=1700301844]
+layout_mode = 0
+offset_left = 920.0
+offset_top = 108.0
+offset_right = 1031.0
+offset_bottom = 158.0
+text = "确认"

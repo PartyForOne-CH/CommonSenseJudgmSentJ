@@ -1,0 +1,57 @@
+[gd_scene format=3 uid="uid://c3nfb3j3ywqf1"]
+
+[ext_resource type="Script" uid="uid://cuqcqrwk4t6mn" path="res://per_setting.gd" id="1_sv4ym"]
+
+[node name="PerSetting" type="Control" unique_id=2116513378]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_sv4ym")
+
+[node name="ConfirmButton" type="Button" parent="." unique_id=801550030]
+layout_mode = 0
+offset_left = 531.0
+offset_top = 458.0
+offset_right = 584.0
+offset_bottom = 496.0
+text = "完成"
+
+[node name="SettingListContainer" type="VBoxContainer" parent="." unique_id=1456784251]
+layout_mode = 0
+offset_left = 322.0
+offset_top = 217.0
+offset_right = 770.0
+offset_bottom = 345.0
+
+[node name="CategorySetting" type="HBoxContainer" parent="SettingListContainer" unique_id=16967515]
+layout_mode = 2
+
+[node name="CategoryTypelabel" type="RichTextLabel" parent="SettingListContainer/CategorySetting" unique_id=1108299823]
+custom_minimum_size = Vector2(120, 40)
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 24
+text = "类型"
+
+[node name="CategoryType" type="OptionButton" parent="SettingListContainer/CategorySetting" unique_id=1910084071]
+layout_mode = 2
+selected = 0
+item_count = 1
+popup/item_0/text = "全部"
+popup/item_0/id = 0
+
+[node name="WorkModeContainer" type="HBoxContainer" parent="SettingListContainer" unique_id=381445201]
+layout_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="SettingListContainer/WorkModeContainer" unique_id=1611912340]
+custom_minimum_size = Vector2(120, 40)
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 24
+text = "工作模式"
+
+[node name="OptionButton" type="OptionButton" parent="SettingListContainer/WorkModeContainer" unique_id=906014865]
+layout_mode = 2
+selected = 0
+item_count = 2
+popup/item_0/text = "随机"
+popup/item_0/id = 0
+popup/item_1/text = "顺序"
+popup/item_1/id = 1
