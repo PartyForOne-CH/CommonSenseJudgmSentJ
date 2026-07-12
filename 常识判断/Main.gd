@@ -30,7 +30,7 @@ var comfrimed_flag :bool= false#标志是否已显示正确答案（双击确认
 var color = Color.WHITE#存放选项的颜色（双击确认直接下一个）
 func _ready():
 	_options_group_setting()
-	#all_setting_reset()
+	all_setting_reset()
 	next_button.pressed.connect(_on_random_pressed)
 	explanation_button.pressed.connect(_on_meaning_pressed)
 	comfirm_button.pressed.connect(_option_proofreading)
@@ -52,7 +52,7 @@ func _ready():
 func _process(delta: float) -> void:
 	#_debug()
 	if Input.is_action_just_pressed("NEXT"):
-		print("if Input.is_action_pressed(NEXT) or comfrimed_flag == true:")
+		#print("if Input.is_action_pressed(NEXT) or comfrimed_flag == true:")
 		comfrimed_flag = false
 		_on_random_pressed()
 	elif Input.is_action_just_pressed("COMFIRM"):
@@ -64,9 +64,12 @@ func _process(delta: float) -> void:
 		_on_random_pressed()
 func all_setting_reset():
 	data_copy = data.duplicate(true)
-	print("已全部遍历")
+	#print("已全部遍历")
 	#print('Global.Read_All',Global.Read_All)
 	categorie_1_list= Global.keys_layer1_list.duplicate(true)
+	print(categorie_1_list)
+	for i in range(len(categorie_1_list)):
+		data_copy[categorie_1_list[i]] = data_copy[categorie_1_list[i]].slice(Global.start_index,Global.end_index)
 	_remain_num_update()
 
 func _on_random_pressed():
@@ -77,30 +80,31 @@ func _on_random_pressed():
 		pass
 	explanation_label.visible = false
 	if remain_num == 0:
-		print("if remain_num == 0:")
+		#print("if remain_num == 0:")
 		question_label.text = "重新加载"
 		all_setting_reset()
-	_random_pick_question()
-	print('color:',color)
-	print('comfrimed_flag:',comfrimed_flag)
+	_pick_question()
 
 
-func _random_pick_question():	#随机挑选公式
+func _pick_question():	#随机挑选公式
+	print('start:',Global.start_index)
+	print("end:",Global.end_index)
 	#判定顺序还是随机
 	if Global.mode == 'random':
 		var random_index_1 = randi() % len(categorie_1_list)
 		categorie_1_random = categorie_1_list[random_index_1]#存放随机到的键1
-		categorie_2_temporary = data_copy[categorie_1_random]#没有key了，现在是数组
+		#没有key了，现在是数组
+		categorie_2_temporary = data_copy[categorie_1_random]
 		var random_index_2 = randi() % len(categorie_2_temporary)#可通过添加范围知道随机范围
 		#改动，选择单个项目时允许添加递增索引
 		categorie_2_choosen = categorie_2_temporary[random_index_2]#随机单个题目
 	elif Global.mode == 'sequence':
 		var sequence_index_1 :int = 0
 		categorie_1_random = categorie_1_list[sequence_index_1]
-		categorie_2_temporary = data_copy[categorie_1_random]#没有key了，现在是数组
+		#没有key了，现在是数组
+		categorie_2_temporary = data_copy[categorie_1_random]
 		var sequence_index_2 :int = 0
 		categorie_2_choosen = categorie_2_temporary[sequence_index_2]
-		print("qiang序列号：",sequence_index_2)
 	question_label.text = categorie_2_choosen["question"]
 	var original :String = categorie_2_choosen["theme"]+'： \n'+categorie_2_choosen["original"]
 	explanation_label.text = original
@@ -154,7 +158,7 @@ func _option_proofreading():#重置选项样式
 	if not selected_option:
 		return
 	if color == Color.GREEN and comfrimed_flag == false:#（双击确认直接下一个）
-		print("comfrimed_flag:",comfrimed_flag)
+		#print("comfrimed_flag:",comfrimed_flag)
 		comfrimed_flag = true
 	else:
 		pass
@@ -165,7 +169,6 @@ func _option_proofreading():#重置选项样式
 	selected_option.add_theme_color_override("font_color", color)
 	if selected_option.text == answer_check:
 		_on_meaning_pressed()
-
 
 func _remain_num_update():
 	remain_label.text = "剩余数量："+str(remain_num)

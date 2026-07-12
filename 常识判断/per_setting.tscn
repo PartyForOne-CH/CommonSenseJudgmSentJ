@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://c3nfb3j3ywqf1"]
 
 [ext_resource type="Script" uid="uid://cuqcqrwk4t6mn" path="res://per_setting.gd" id="1_sv4ym"]
+[ext_resource type="PackedScene" uid="uid://cjp6j0bhfgsj1" path="res://range_setting.tscn" id="2_n2fcw"]
 
 [node name="PerSetting" type="Control" unique_id=2116513378]
 layout_mode = 3
@@ -55,3 +56,6 @@ popup/item_0/text = "随机"
 popup/item_0/id = 0
 popup/item_1/text = "顺序"
 popup/item_1/id = 1
+
+[node name="RangeSetting" parent="SettingListContainer" unique_id=1687563781 instance=ExtResource("2_n2fcw")]
+layout_mode = 2

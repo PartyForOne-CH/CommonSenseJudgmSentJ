@@ -2,8 +2,12 @@ extends Control
 @onready var confirm_button = $ConfirmButton
 @onready var category_edit: OptionButton = $SettingListContainer/CategorySetting/CategoryType
 @onready var file = FileAccess.open("res://wordbank.json", FileAccess.READ)
+@onready var word_num_edit = $SettingListContainer/RangeSetting/Num
+@onready var start_index_edit = $SettingListContainer/RangeSetting/StartIndex
+@onready var end_index_edit = $SettingListContainer/RangeSetting/EndIndex
 var category_list :Array = []
 var category: String
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -15,6 +19,12 @@ func _ready():
 	
 	
 func _process(_delta: float) -> void:
+	if start_index_edit.value >= end_index_edit.value:
+		confirm_button.disabled = true
+	elif word_num_edit.value > end_index_edit.value - start_index_edit.value+1:
+		word_num_edit.value = end_index_edit.value - start_index_edit.value+1
+	else:
+		confirm_button.disabled = false
 	pass
 func _add_category_item():
 	var data_all :Dictionary
@@ -44,8 +54,6 @@ func load_data_lib():
 		print("无法加载词库文件")
 
 func change_scene()->void:
-	#print(type_string(typeof(Global.data)))
-	#print(type_string(typeof(Global.keys_layer1_list[0])))
 	get_tree().change_scene_to_file("res://Main.tscn")
 
 func _setting()->void:
@@ -55,9 +63,15 @@ func _setting()->void:
 		Global.mode = "sequence"
 	elif $SettingListContainer/WorkModeContainer/OptionButton.text=="随机":
 		Global.mode = "random"
+	Global.start_index = start_index_edit.value-1
+	Global.end_index = end_index_edit.value
+	Global.question_num = word_num_edit.value
+	print(Global.question_num)
 func _restore_global_setting():
 	Global.keys_layer1_list = []
 	Global.keys_layer2_list = []
 	Global.Read_All = true
 	Global.mode = "random"
-	
+	Global.start_index = 0
+	Global.end_index = 10000
+	Global.question_num = 0
