@@ -29,8 +29,8 @@ horizontal_alignment = 1
 
 [node name="EndIndex" type="SpinBox" parent="." unique_id=1722771688]
 layout_mode = 2
-max_value = 600.0
-value = 600.0
+max_value = 2000.0
+value = 2000.0
 
 [node name="RichTextLabel4" type="RichTextLabel" parent="." unique_id=1966362508]
 custom_minimum_size = Vector2(80, 0)
@@ -41,5 +41,5 @@ text = "数量："
 [node name="Num" type="SpinBox" parent="." unique_id=913666531]
 layout_mode = 2
 min_value = 1.0
-max_value = 600.0
-value = 600.0
+max_value = 2000.0
+value = 2000.0

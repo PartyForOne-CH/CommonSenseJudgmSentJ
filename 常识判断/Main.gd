@@ -18,6 +18,7 @@ var option_bank: Array = []
 var option_flag :bool = true#判断选项是否正确的标志
 
 var data:Dictionary = Global.data
+var remain_num_dic :Dictionary = {}
 var data_copy:Dictionary
 var categorie_1_list :Array = []
 var categorie_2_temporary :Array = []#l遍历键1时，临时存放对应的键2
